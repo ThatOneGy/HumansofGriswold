@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Humans of Griswold</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 200vh; /* Extend body height for scrolling */
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('Griswold Landscapes.png') no-repeat center center fixed; 
+            background-size: cover;
+            background-attachment: fixed; /* Keeps the image fixed during scrolling */
+            transition: background 3s ease-in-out; /* Smooth transition for background change */
+        }
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            background-color: rgba(255, 255, 255, 0.7); /* Slight transparency for readability */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background-color: #003707;
+            color: white;
+            font-size: 24px;
+        }
+        .profile {
+            display: flex;
+            padding: 20px;
+            align-items: center;
+        }
+        .profile img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            margin-right: 20px;
+        }
+        .profile-info {
+            max-width: 600px;
+        }
+        .profile-info h2 {
+            margin: 0;
+            font-size: 28px;
+        }
+        .quote {
+            font-size: 20px;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-top: 10px;
+        }
+        .description {
+            font-size: 16px;
+            color: #185f00;
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #ecf0f1;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            Humans of Griswold
+        </div>
+
+        <div id="profiles"></div>
+    </div>
+
+    <script>
+        // Profiles data
+        const profiles = [
+        {
+        name: "Annie Diaz Soto",
+        img: "https://via.placeholder.com/150",
+        description: `<a href="secrets.html" style="color: #185f00; text-decoration: none;">I</a> wanna be remembered as the one that cared about them. I spent so much time trying to act like I didn\'t care about people, but now I want them to know that I cared about them and I appreciate them and I want them to remember the good memories they have with me. I guess I want to be remembered by the person they could always count on. My failure of being a good person per say, yeah I failed at that and when my best friend told me that they couldn't confide, like they were walking around on eggshells, so I changed that.`
+    }
+];
+
+        // Select the container
+        const profilesContainer = document.getElementById('profiles');
+
+        // Generate profile HTML
+        profiles.forEach((profile, index) => {
+            const alignmentClass = index % 2 === 0 ? "right" : "left";
+            profilesContainer.innerHTML += `
+                <div class="profile ${alignmentClass}">
+                    <img src="${profile.img}" alt="${profile.name}'s Photo" class="${alignmentClass}">
+                    <div class="profile-info">
+                        <h2>${profile.name}</h2>
+                        <p class="description">${profile.description}</p>
+                    </div>
+                </div>
+            `;
+        });
+
+        // JavaScript to change the background opacity on scroll
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY / window.innerHeight;
+            const fadeFactor = Math.min(scrollPosition, 1); // Ensures opacity doesn't go below 0
+            document.body.style.background = `linear-gradient(to bottom, rgba(0, 0, 0, ${0 - fadeFactor}), rgba(0, 0, 0, 0)), 
+                                              url('Griswold Landscapes.png') no-repeat center center fixed`;
+            document.body.style.backgroundSize = 'cover';
+        });
+    </script>
+</body>
+</html>
